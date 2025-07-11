@@ -1,0 +1,70 @@
+\chapter{Introduction}
+\section{Overview}
+Computer Networks is a course that covers the fundamental concepts and technologies that enable communication between computers and devices. 
+
+Understanding how data flows through networks, the protocols that govern this communication, and the architecture of network systems is not only essential for understanding modern computing but could also be pretty fun!
+
+This course will explore various topics including:
+\begin{itemize}
+    \item The OSI and TCP/IP models
+    \item Network protocols and standards
+    \item IP addressing and subnetting
+    \item Routing and switching
+    \item Wireless networking
+    \item Network security
+\end{itemize}
+
+For the practical component, we will be using Wireshark and Cisco Packet Tracer to analyze network traffic and simulate network configurations. There will be sections dedicated to guides as to how to set up and use these tools effectively.
+
+Your practical assignments will involve programming in C \textbf{on Linux} to implement network protocols and other miscellaneous tasks.
+
+\begin{importantblock}
+Networking is handled differently depending on the operating system and C does not attempt to abstract this away. We implore you to check out why that is in detail, but for the purposes of this reader, this will be the only mention of it. The mandatory \textit{Operating Systems} course will cover some of the differences in more detail.
+
+From here on out, we will assume you are using Linux or an equivalent Unix-like operating system. If you are using Windows, you will need to familiarize yourself with the \href{https://docs.microsoft.com/en-us/windows/wsl/install}{Windows Subsystem for Linux (WSL)} or use a virtual machine with a Linux distribution installed.
+\end{importantblock}
+
+\section{Setting Up Your Environment}
+
+There are multiple tools and libraries that you will need to install to complete the practical assignments in this course. Follow the instructions below to set up your environment.
+
+\subsection{Windows}
+As mentioned earlier, for code, you will need to use the Windows Subsystem for Linux (WSL) or a virtual machine with a Linux distribution installed.
+
+As for the tools, please download and install the following:
+\begin{itemize}
+    \item \href{https://www.wireshark.org/download.html}{Wireshark}
+    \item \href{https://www.netacad.com/cisco-packet-tracer}{Cisco Packet Tracer}
+\end{itemize}
+
+\subsection{Linux}
+
+\subsubsection{Debian-based systems (Ubuntu, Debian, Linux Mint)}
+For Debian-based distributions, you can install Wireshark using the package manager:
+\begin{verbatim}
+sudo apt update
+sudo apt install wireshark
+\end{verbatim}
+
+\begin{noteblock}
+Cisco Packet Tracer is not available in official repositories. Download it from the \href{https://www.netacad.com/courses/packet-tracer}{Cisco Networking Academy} website and follow their installation instructions.
+\end{noteblock}
+
+\subsubsection{Arch-based systems}
+For Arch-based distributions:
+\begin{verbatim}
+sudo pacman -S wireshark-qt
+\end{verbatim}
+
+Cisco Packet Tracer can be installed from the AUR:
+\begin{verbatim}
+yay -S packettracer
+\end{verbatim}
+
+\subsection{macOS}
+For macOS, you can install Wireshark using Homebrew:
+\begin{verbatim}
+brew install --cask wireshark
+\end{verbatim}
+
+Cisco Packet Tracer can be downloaded from the \href{https://www.netacad.com/courses/packet-tracer}{Cisco Networking Academy} website. While macOS is Unix-like, the C networking libraries should work \textbf{similarly to Linux}, though there may be minor differences in some system calls and headers.

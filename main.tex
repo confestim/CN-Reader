@@ -1,0 +1,224 @@
+\documentclass[11pt,a4paper,twoside]{book}
+
+% ===== PACKAGES =====
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{mdframed}
+
+% ===== GEOMETRY - SMALLER MARGINS =====
+\usepackage[
+    top=2cm,
+    bottom=2cm,
+    left=2.5cm,
+    right=2cm,
+    marginparwidth=1.8cm,
+    marginparsep=0.3cm,
+    headheight=14pt,
+    headsep=1cm,
+    footskip=1cm
+]{geometry}
+
+% ===== COLORS =====
+\definecolor{noteblue}{RGB}{13, 110, 253}
+\definecolor{tipgreen}{RGB}{25, 135, 84}
+\definecolor{importantorange}{RGB}{255, 149, 0}
+\definecolor{warningyellow}{RGB}{255, 193, 7}
+\definecolor{cautionred}{RGB}{220, 53, 69}
+\definecolor{codegray}{RGB}{248, 249, 250}
+\definecolor{linkblue}{RGB}{0, 123, 255}
+
+% ===== HYPERREF SETUP =====
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkblue,
+    citecolor=linkblue,
+    urlcolor=linkblue,
+    bookmarksdepth=3,
+    pdfborder={0 0 0}
+}
+
+% ===== GITHUB-STYLE CALLOUT BOXES =====
+\tcbuselibrary{skins,breakable}
+
+% Base style for all callouts
+\tcbset{
+    calloutbase/.style={
+        enhanced,
+        breakable,
+        colback=white,
+        colframe=#1,
+        leftrule=4mm,
+        rightrule=0mm,
+        toprule=0mm,
+        bottomrule=0mm,
+        arc=0mm,
+        outer arc=0mm,
+        left=8mm,
+        right=4mm,
+        top=4mm,
+        bottom=4mm,
+        fonttitle=\bfseries\sffamily,
+        coltitle=black,
+        attach boxed title to top left={yshift=-2mm,xshift=4mm},
+        boxed title style={
+            colback=#1,
+            colframe=#1,
+            arc=2mm,
+            outer arc=0mm,
+            top=2mm,
+            bottom=2mm,
+            left=4mm,
+            right=4mm
+        },
+        before skip=\baselineskip,
+        after skip=\baselineskip
+    }
+}
+
+% NOTE callout
+\newtcolorbox{noteblock}{
+    calloutbase=noteblue,
+    title={\faInfoCircle\ NOTE}
+}
+
+% TIP callout
+\newtcolorbox{tipblock}{
+    calloutbase=tipgreen,
+    title={\faLightbulb\ TIP}
+}
+
+% IMPORTANT callout
+\newtcolorbox{importantblock}{
+    calloutbase=importantorange,
+    title={\faExclamationCircle\ IMPORTANT}
+}
+
+% WARNING callout
+\newtcolorbox{warningblock}{
+    calloutbase=warningyellow,
+    title={\faExclamationTriangle\ WARNING}
+}
+
+% CAUTION callout
+\newtcolorbox{cautionblock}{
+    calloutbase=cautionred,
+    title={\faExclamationTriangle\ CAUTION}
+}
+
+% ===== CODE LISTINGS - C LANGUAGE =====
+\lstset{
+    backgroundcolor=\color{codegray},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    commentstyle=\color{gray},
+    frame=single,
+    frameround=tttt,
+    framesep=5pt,
+    keywordstyle=\color{blue},
+    language=C,
+    numbers=left,
+    numbersep=5pt,
+    numberstyle=\tiny\color{gray},
+    rulecolor=\color{black},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    stringstyle=\color{red},
+    tabsize=4,
+    morekeywords={size_t, ssize_t, socklen_t, struct, typedef}
+}
+
+% ===== CHAPTER AND SECTION FORMATTING =====
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\sffamily}
+  {\chaptertitlename\ \thechapter}
+  {20pt}
+  {\Huge}
+  
+\titleformat{\section}
+  {\normalfont\Large\bfseries\sffamily}
+  {\thesection}
+  {1em}
+  {}
+  
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\sffamily}
+  {\thesubsection}
+  {1em}
+  {}
+
+% ===== HEADER AND FOOTER =====
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\nouppercase{\leftmark}}
+\fancyhead[RO]{\nouppercase{\rightmark}}
+\fancyfoot[LE,RO]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ===== THEOREM ENVIRONMENTS =====
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{example}{Example}[chapter]
+\newtheorem{protocol}{Protocol}[chapter]
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+
+% ===== DOCUMENT METADATA =====
+\title{Computer Networks: Course Reader}
+\author{Computer Networks TAs et al.}
+\date{Latest revision: \today}
+
+
+% ===== OTHER =====
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5\baselineskip}
+
+\begin{document}
+
+% ===== TITLE PAGE =====
+\frontmatter
+\maketitle
+
+% ===== TABLE OF CONTENTS =====
+\tableofcontents
+% \listoffigures
+% \listoftables
+
+% ===== MAIN CONTENT =====
+\mainmatter
+\input{sections/0_preface}
+\input{sections/1_networking}
+
+% ===== APPENDICES =====
+\appendix
+
+% Add your appendices here
+
+% ===== BACK MATTER =====
+\backmatter
+
+% Add bibliography, index, etc. here
+
+\end{document}
