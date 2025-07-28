@@ -50,7 +50,15 @@ jobs:
             git push
           fi
 
-      - name: Build Latex
+      - name: Download pre-built PDF
+        uses: actions/download-artifact@v4
+        with:
+          name: built-pdf
+          path: .
+        continue-on-error: true
+
+      - name: Build LaTeX (fallback if no pre-built PDF)
+        if: ${{ !hashFiles('main.pdf') }}
         uses: xu-cheng/latex-action@v4
         with:
           root_file: main.tex
