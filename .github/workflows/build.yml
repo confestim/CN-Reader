@@ -61,10 +61,10 @@ jobs:
 
       - name: Install LaTeX
         run: |
-          if [ ! -d "/usr/share/texlive" ]; then
-            sudo apt-get update && sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended
+          if ! command -v latexmk &> /dev/null; then
+            sudo apt-get update && sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended latexmk
           else
-            echo "LaTeX already cached and available"
+            echo "LaTeX and latexmk already available"
           fi
 
       - name: Build PDF
