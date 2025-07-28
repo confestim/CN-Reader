@@ -34,7 +34,7 @@ jobs:
                 root_file: main.tex
             
             - name: Attach to PR
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                 name: PDF Preview
                 path: main.pdf
