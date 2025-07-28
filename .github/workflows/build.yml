@@ -47,27 +47,10 @@ jobs:
             git push
           fi
 
-      - name: Setup TeX Live
-        uses: zauguin/install-texlive@v3
+      - name: Build Latex
+        uses: xu-cheng/latex-action@v4
         with:
-          packages: >
-            scheme-basic
-            latexmk
-            amsmath
-            amsfonts
-            amssymb
-            graphicx
-            tikz
-            hyperref
-            booktabs
-            enumitem
-            fancyhdr
-            titlesec
-            tcolorbox
-            fontawesome5
-            mdframed
-      - name: Build PDF
-        run: latexmk -pdf main.tex
+          root_file: main.tex
 
       - name: Create Release
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'

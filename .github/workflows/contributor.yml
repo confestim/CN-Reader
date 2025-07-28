@@ -10,12 +10,12 @@ on:
 jobs:
     preview:
         runs-on: ubuntu-latest
+        if: github.event_name == 'pull_request'
 
         steps:
             - uses: actions/checkout@v4
-
+            
             - name: Preview contributor addition
-              if: github.event_name == 'pull_request'
               run: |
                   DATE=$(date +"%d/%m/%y")
                   USER="${{ github.event.pull_request.user.login }}"
@@ -26,3 +26,15 @@ jobs:
                   echo "\\subsection*{@$USER - $DATE}"
                   echo "$DESCRIPTION"
                   echo "\\url{$LINK}"
+            
+
+            - name: Build
+              uses: xu-cheng/latex-action@v4
+              with:
+                root_file: main.tex
+            
+            - name: Attach to PR
+              uses: actions/upload-artifact@v3
+              with:
+                name: PDF Preview
+                path: main.pdf
