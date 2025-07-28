@@ -48,9 +48,9 @@ jobs:
           fi
 
       - name: Setup TeX Live
-        uses: paolobrasolin/setup-texlive-action@v1
+        uses: zauguin/install-texlive@v3
         with:
-          packages-path: ${{ github.workspace }}/.github/texlive.packages
+          package_file: .github/texlive.packages
 
       - name: Build PDF
         run: latexmk -pdf main.tex
