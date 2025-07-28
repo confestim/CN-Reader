@@ -1,0 +1,15 @@
+# LaTeX packages needed
+latexmk
+amsmath
+amsfonts
+amssymb
+fontawesome5
+url
+hyperref
+geometry
+graphicx
+xcolor
+tikz
+pgf
+latex-bin
+scheme-basic

@@ -16,10 +16,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: awalsh128/cache-apt-pkgs-action@latest
-        with:
-          packages: texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra latexmk
-          version: 1.0.0
 
       - name: Add contributor (if from merged PR)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -51,13 +47,10 @@ jobs:
             git push
           fi
 
-      - name: Install LaTeX
-        run: |
-          if ! command -v latexmk &> /dev/null; then
-            sudo apt-get update && sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra latexmk
-          else
-            echo "LaTeX and latexmk already available"
-          fi
+      - name: Setup TeX Live
+        uses: paolobrasolin/setup-texlive-action@v1
+        with:
+          packages-path: ${{ github.workspace }}/.github/texlive.packages
 
       - name: Build PDF
         run: latexmk -pdf main.tex
