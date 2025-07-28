@@ -1,7 +1,4 @@
-\section{Physical Layer}
-\label{sec:osi_physical}
-
-\vfill
+\section{Physical Layer}\label{sec:osi_physical}
 \section*{tl;dr}
 The first layer of the OSI model is responsible for the physical transmission of data over a medium. It defines the hardware elements involved in the communication process, such as cables, switches, and network interface cards (NICs). The physical layer ensures that data is transmitted as raw bits over a physical medium, without any concern for the content or meaning of those bits.
 
@@ -15,7 +12,6 @@ The Physical Layer is responsible for:
 \end{itemize}
 
 
-\vfill
 \subsection*{How does data exchange work? $\star$}
 On a physics level, data exchange is about sending and receiving bits over some medium. 
 
@@ -24,17 +20,14 @@ This is done by converting the bits into electrical, optical, or radio signals. 
 
 In essence, all of them boil down to a similar process: a change in some physical property (voltage, light intensity, or electromagnetic field) that can be detected by the receiving device, such that it can decode the signal back into bits. The process of converting bits into signals is called \textbf{modulation}, and the reverse process is called \textbf{demodulation}, while the process of converting bits into a specific format for transmission is called \textbf{encoding}.
 
-\vfill
 \newpage
-\vfill
 Let's look at a simple example of a 1-bit ADC (Analog to Digital Converter) that converts a voltage level into a bit value:
 
 % assets/osi/physical/adc_plot.png
 \begin{figure}[h]
     \centering
     \includegraphics[width=.5\textwidth]{assets/osi/physical/adc_plot.png}
-    \caption{Example of a 1-bit ADC converting voltage levels to bits}
-    \label{fig:adc_plot}
+    \caption{Example of a 1-bit ADC converting voltage levels to bits}\label{fig:adc_plot}
 \end{figure}
 
 However, as you can probably guess, there are infinite ways for us to interpret this graph. It could correspond to \texttt{1010} or \texttt{1111000011110000} and so on. 
@@ -72,8 +65,7 @@ As an analogy, think of a dance where both partners need to be in sync to perfor
         % Labels
         \node at (2.25,-0.5) {Bit sampling occurs on clock transitions};
     \end{tikzpicture}
-    \caption{Example rising edge clock synchronization}
-    \label{fig:clock_sync}
+    \caption{Example rising edge clock synchronization}\label{fig:clock_sync}
 \end{figure}
 \vfill
 \newpage
@@ -86,39 +78,31 @@ Guided media confines signals to a specific path (literally "guided" along a cab
 \subsubsection*{Twisted Pair Cable}
 You probably know this one well, as you find it in most local area networks (LANs) and telephone systems. It consists of pairs of insulated copper wires twisted together to reduce electromagnetic interference.
 
-\begin{minipage}{0.6\textwidth}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=4cm]{assets/osi/physical/f-utp.png}
+    \caption{F-UTP}\label{fig:twisted_pair}
+\end{figure}
 
 UTP (Unshielded Twisted Pair) is the most common type, but there are also shielded variants like STP (Shielded Twisted Pair) and F/UTP (Foiled Unshielded Twisted Pair).
-
-\end{minipage}
-\hfill
-\begin{minipage}{0.3\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{assets/osi/physical/f-utp.png}
-    \caption{F-UTP (Foiled Unshielded Twisted Pair) example}
-    \label{fig:twisted_pair}
-\end{minipage}
 
 \vspace{1em}
 
 \subsubsection*{Coaxial Cable}
 Usually used in cable television and broadband\footnote{Everything but dial-up.}.
 
-\begin{minipage}{0.6\textwidth}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=4cm]{assets/osi/physical/coax.png}
+    \caption{Coaxial cable structure}\label{fig:coaxial_cable}
+\end{figure}
 
-\vspace{0.5em}
 \begin{itemize}
     \item Common in cable TV networks and was used in early Ethernet implementations
     \item Offers better noise immunity than twisted pair with higher bandwidth capacity, which is why radio amateurs still use it
 \end{itemize}
-\end{minipage}
-\hfill
-\begin{minipage}{0.3\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{assets/osi/physical/coax.png}
-    \caption{Coaxial cable structure}
-    \label{fig:coaxial_cable}
-\end{minipage}
+
+\vspace{1em}
 
 \subsubsection*{Fiber Optic Cable}
 Uses light to transmit data, making it the fastest and most reliable medium available today.
@@ -132,8 +116,7 @@ Uses light to transmit data, making it the fastest and most reliable medium avai
 \begin{figure}
     \centering
     \includegraphics[width=.8\textwidth]{assets/osi/physical/fiber.png}
-    \caption{Fiber optic cable structure}
-    \label{fig:fiber_optic}
+    \caption{Fiber optic cable structure}\label{fig:fiber_optic}
 \end{figure}
 
 \vspace{1em}
@@ -147,8 +130,7 @@ Ever wondered how signals travel through the air? Different types of electromagn
 \begin{figure}[h]
     \centering
     \includegraphics[width=.8\textwidth]{assets/osi/physical/spectrum.png}
-    \caption{Electromagnetic spectrum showing different types of waves}
-    \label{fig:em_spectrum}
+    \caption{Electromagnetic spectrum showing different types of waves}\label{fig:em_spectrum}
 \end{figure}
 
 \subsubsection*{Radio Waves}
@@ -180,8 +162,7 @@ Contrary to popular belief, microwaves are not just for cooking food. They are a
         1000BASE-SX & 1 Gbps & Multi-mode fiber & 550m \\
         \hline
     \end{tabular}
-    \caption{Common Ethernet Physical Layer Standards}
-    \label{tab:ethernet_standards}
+    \caption{Common Ethernet Physical Layer Standards}\label{tab:ethernet_standards}
 \end{table}
 
 \subsection*{WiFi Standards}

@@ -17,6 +17,8 @@
 \usepackage{tcolorbox}
 \usepackage{fontawesome5}
 \usepackage{mdframed}
+\usepackage{subcaption}
+\usepackage{wrapfig}
 
 % ===== GEOMETRY - SMALLER MARGINS =====
 \usepackage[
@@ -202,8 +204,7 @@
 % \listoftables
 
 % ===== MAIN CONTENT =====
-\mainmatter
-\input{sections/0_preface}
+\mainmatter\input{sections/0_preface}
 \input{sections/1_networking}
 \input{sections/2_osi}
 % ===== APPENDICES =====
@@ -211,10 +212,6 @@
 
 
 % ===== BACK MATTER =====
-\backmatter
-
-
-\section*{Contributions}
-\label{sec:contributions}
+\backmatter\section*{Contributions}\label{sec:contributions}
 \input{contributors.tex}
 \end{document}
