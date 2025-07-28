@@ -32,7 +32,6 @@ jobs:
               uses: xu-cheng/latex-action@v4
               with:
                 root_file: main.tex
-                args: "-halt-on-error -interaction=nonstopmode"
             
             - name: Verify compilation success
               run: |
