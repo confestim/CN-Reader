@@ -28,13 +28,38 @@ jobs:
                   echo "\\url{$LINK}"
             
 
-            - name: Build
+            - name: Build and check for errors
               uses: xu-cheng/latex-action@v4
               with:
                 root_file: main.tex
+                args: "-halt-on-error -interaction=nonstopmode"
+            
+            - name: Verify compilation success
+              run: |
+                if [ -f main.log ]; then
+                  echo "Checking LaTeX compilation log..."
+                  
+                  # Check for fatal errors
+                  if grep -E "(! |Emergency stop|Fatal error)" main.log; then
+                    echo "❌ LaTeX compilation failed with errors!"
+                    exit 1
+                  fi
+                  
+                  # Check for undefined references
+                  if grep -E "LaTeX Warning: Reference .* undefined" main.log; then
+                    echo "❌ Undefined references found!"
+                    exit 1
+                  fi
+                  
+                  echo "✅ LaTeX compilation successful!"
+                else
+                  echo "❌ LaTeX log file not found!"
+                  exit 1
+                fi
             
             - name: Attach to PR
-              uses: actions/upload-artifact@v3
+              if: success()
+              uses: actions/upload-artifact@v4
               with:
                 name: PDF Preview
                 path: main.pdf

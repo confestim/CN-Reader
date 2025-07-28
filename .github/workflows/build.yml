@@ -3,8 +3,10 @@ name: Build and Release
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    paths:
+      - 'assets/**'
+      - 'sections/**'
+      - 'main.tex'
 
   workflow_dispatch:
 
@@ -20,7 +22,6 @@ jobs:
           fetch-depth: 0
 
       - name: Add contributor (if from merged PR)
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           # Get the merge commit message to extract PR info
           COMMIT_MSG=$(git log -1 --pretty=%B)
@@ -55,7 +56,6 @@ jobs:
           root_file: main.tex
 
       - name: Create Release
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: v${{ github.run_number }}
