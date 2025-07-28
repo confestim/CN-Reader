@@ -72,6 +72,9 @@ jobs:
             xcolor
             pgf
             url
+            zref
+            needspace
+            oberdiek
 
       - name: Build PDF
         run: latexmk -pdf main.tex
