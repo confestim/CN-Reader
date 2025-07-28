@@ -50,7 +50,21 @@ jobs:
       - name: Setup TeX Live
         uses: zauguin/install-texlive@v3
         with:
-          package_file: .github/texlive.packages
+          packages: >
+            scheme-basic
+            latexmk
+            amsmath
+            amsfonts
+            amssymb
+            fontawesome5
+            url
+            hyperref
+            geometry
+            graphicx
+            xcolor
+            pgf
+            tikz-base
+            l3build latex latex-bin luatex latex-bin-dev
 
       - name: Build PDF
         run: latexmk -pdf main.tex
