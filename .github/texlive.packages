@@ -1,4 +1,5 @@
 # LaTeX packages needed
+scheme-basic
 latexmk
 amsmath
 amsfonts
@@ -9,7 +10,5 @@ hyperref
 geometry
 graphicx
 xcolor
-tikz
 pgf
-latex-bin
-scheme-basic
+tikz-base
