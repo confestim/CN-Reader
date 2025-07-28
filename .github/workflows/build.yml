@@ -16,6 +16,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: |
+            texlive-latex-extra
+            texlive-fonts-recommended
+            texlive-fonts-extra
+            latexmk
+          version: 1.0.0
 
       - name: Add contributor (if from merged PR)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -46,18 +54,6 @@ jobs:
             git commit -m "Add contributor: @$USER" || echo "No changes to commit"
             git push
           fi
-
-      - name: Cache LaTeX packages
-        uses: actions/cache@v4
-        with:
-          path: |
-            /usr/share/texlive
-            /usr/share/texmf
-            /var/lib/texmf
-            /etc/texmf
-          key: latex-${{ runner.os }}-${{ hashFiles('main.tex', 'sections/*.tex') }}
-          restore-keys: |
-            latex-${{ runner.os }}-
 
       - name: Install LaTeX
         run: |
