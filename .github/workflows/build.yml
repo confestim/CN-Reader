@@ -62,7 +62,7 @@ jobs:
       - name: Install LaTeX
         run: |
           if ! command -v latexmk &> /dev/null; then
-            sudo apt-get update && sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended latexmk
+            sudo apt-get update && sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra latexmk
           else
             echo "LaTeX and latexmk already available"
           fi
