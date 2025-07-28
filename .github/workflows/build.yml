@@ -21,40 +21,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Add contributor (if from merged PR)
-        run: |
-          # Get the merge commit message to extract PR info
-          COMMIT_MSG=$(git log -1 --pretty=%B)
-          
-          # Check if this is a merge commit from a PR
-          if echo "$COMMIT_MSG" | grep -q "Merge pull request"; then
-            # Extract basic info from commit message
-            USER=$(echo "$COMMIT_MSG" | grep -o "from [^/]*/[^/]*" | head -1 | cut -d'/' -f1 | sed 's/from //')
-            TITLE=$(git log -1 --pretty=%s)
-            DATE=$(date +"%d/%m/%y")
-            
-            # Use repository URL to construct PR link (approximate)
-            REPO_URL="https://github.com/${{ github.repository }}"
-            
-            # Add contributor to tex file
-            echo "" >> contributors.tex
-            echo "\\subsection*{@$USER - $DATE}" >> contributors.tex
-            echo "$TITLE" >> contributors.tex
-            echo "\\url{$REPO_URL}" >> contributors.tex
-            
-            # Commit and push using GitHub API to bypass branch protection
-            git config --local user.email "action@github.com"
-            git config --local user.name "GitHub Action"
-            git add contributors.tex
-            git commit -m "Add contributor: @$USER [skip ci]" || echo "No changes to commit"
-            
-            # Push using the GITHUB_TOKEN with admin privileges
-            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main || {
-              echo "Failed to push contributor addition - this may be due to branch protection rules"
-              echo "The release will proceed without updating contributors.tex"
-            }
-          fi
-
       - name: Download pre-built PDF
         uses: actions/download-artifact@v4
         with:

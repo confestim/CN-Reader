@@ -15,13 +15,40 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             
+            - name: Add contributor entry to PR
+              run: |
+                  DATE=$(date +"%d/%m/%y")
+                  USER="${{ github.event.pull_request.user.login }}"
+                  DESCRIPTION="${{ github.event.pull_request.title }}"
+                  LINK="${{ github.event.pull_request.html_url }}"
+                  
+                  # Add contributor to tex file
+                  echo "" >> contributors.tex
+                  echo "\\subsection*{@$USER - $DATE}" >> contributors.tex
+                  echo "$DESCRIPTION" >> contributors.tex
+                  echo "\\url{$LINK}" >> contributors.tex
+                  
+                  # Check if there are changes to commit
+                  if ! git diff --quiet contributors.tex; then
+                    # Configure git
+                    git config --local user.email "action@github.com"
+                    git config --local user.name "GitHub Action"
+                    
+                    # Commit and push to the PR branch
+                    git add contributors.tex
+                    git commit -m "Add contributor entry for @$USER"
+                    git push origin HEAD:${{ github.event.pull_request.head.ref }}
+                  else
+                    echo "No changes needed to contributors.tex"
+                  fi
+
             - name: Preview contributor addition
               run: |
                   DATE=$(date +"%d/%m/%y")
                   USER="${{ github.event.pull_request.user.login }}"
                   DESCRIPTION="${{ github.event.pull_request.title }}"
                   LINK="${{ github.event.pull_request.html_url }}"
-                  echo "When this PR is merged, the following will be added to contributors.tex:"
+                  echo "The following has been added to contributors.tex:"
                   echo ""
                   echo "\\subsection*{@$USER - $DATE}"
                   echo "$DESCRIPTION"
