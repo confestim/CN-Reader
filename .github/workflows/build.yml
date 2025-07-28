@@ -55,16 +55,26 @@ jobs:
             latexmk
             amsmath
             amsfonts
-            amssymb
-            fontawesome5
-            url
+            listings
             hyperref
+            cleveref
+            booktabs
+            longtable
+            array
+            enumitem
+            fancyhdr
+            titlesec
+            tcolorbox
+            fontawesome5
+            mdframed
             geometry
-            graphicx
+            lmodern
+            microtype
+            tools
+            graphics
             xcolor
             pgf
-            tikz-base
-            l3build latex latex-bin luatex latex-bin-dev
+            url
 
       - name: Build PDF
         run: latexmk -pdf main.tex
