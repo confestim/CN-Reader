@@ -49,8 +49,10 @@ jobs:
               # Add contributor to tex file
               echo "" >> contributors.tex
               echo "\\subsection*{@$USER - $DATE}" >> contributors.tex
-              echo "$TITLE" >> contributors.tex
-              echo "\\url{$PR_URL}" >> contributors.tex
+                echo "$TITLE" >> contributors.tex
+                echo "" >> contributors.tex
+                echo "" >> contributors.tex
+                echo "\\hfill\\url{$PR_URL}" >> contributors.tex
               
               # Commit and push (this will bypass branch protection due to admin token)
               git config --local user.email "action@github.com"
