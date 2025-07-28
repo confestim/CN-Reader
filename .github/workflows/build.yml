@@ -55,9 +55,10 @@ jobs:
             latexmk
             amsmath
             amsfonts
-            listings
+            amssymb
+            graphicx
+            tikz
             hyperref
-            cleveref
             booktabs
             enumitem
             fancyhdr
@@ -65,17 +66,6 @@ jobs:
             tcolorbox
             fontawesome5
             mdframed
-            geometry
-            microtype
-            tools
-            graphics
-            xcolor
-            pgf
-            url
-            zref
-            needspace
-            oberdiek
-
       - name: Build PDF
         run: latexmk -pdf main.tex
 
