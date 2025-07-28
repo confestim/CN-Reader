@@ -68,3 +68,49 @@ brew install --cask wireshark
 \end{verbatim}
 
 Cisco Packet Tracer can be downloaded from the \href{https://www.netacad.com/courses/packet-tracer}{Cisco Networking Academy} website. While macOS is Unix-like, the C networking libraries should work \textbf{similarly to Linux}, though there may be minor differences in some system calls and headers.
+
+\section{C Development Environment}
+
+In addition to the networking tools above, you'll need a proper C development environment for the programming assignments.
+
+\subsection{Essential Development Tools}
+
+All systems will need:
+\begin{itemize}
+    \item A C compiler (GCC usually)
+    \item Make build system
+    \item A text editor or IDE
+\end{itemize}
+
+\subsubsection{Linux Installation}
+
+On Debian-based systems:
+\begin{verbatim}
+sudo apt install build-essential git
+\end{verbatim}
+
+On Arch-based systems:
+\begin{verbatim}
+sudo pacman -S base-devel git
+\end{verbatim}
+
+\subsubsection{macOS Installation}
+
+Install Xcode Command Line Tools:
+\begin{verbatim}
+xcode-select --install
+\end{verbatim}
+
+\subsection{Networking Libraries}
+
+The assignments will use standard POSIX networking libraries that are included with your system:
+\begin{itemize}
+    \item \texttt{sys/socket.h} - Socket programming interface
+    \item \texttt{netinet/in.h} - Internet address family
+    \item \texttt{arpa/inet.h} - Internet operations
+    \item \texttt{unistd.h} - POSIX operating system API
+\end{itemize}
+
+\begin{noteblock}
+These are part of the standard C library on Unix-like systems.
+\end{noteblock}
