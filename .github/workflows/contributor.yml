@@ -11,9 +11,15 @@ jobs:
     preview:
         runs-on: ubuntu-latest
         if: github.event_name == 'pull_request'
+        permissions:
+            contents: write
+            pull-requests: write
 
         steps:
             - uses: actions/checkout@v4
+              with:
+                token: ${{ secrets.GITHUB_TOKEN }}
+                fetch-depth: 0
             
             - name: Add contributor entry to PR
               run: |
@@ -37,7 +43,7 @@ jobs:
                     # Commit and push to the PR branch
                     git add contributors.tex
                     git commit -m "Add contributor entry for @$USER"
-                    git push origin HEAD:${{ github.event.pull_request.head.ref }}
+                    git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.event.pull_request.head.ref }}
                   else
                     echo "No changes needed to contributors.tex"
                   fi
