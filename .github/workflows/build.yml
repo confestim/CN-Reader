@@ -3,6 +3,10 @@ name: Build and Release
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'assets/**'
+      - 'sections/**'
+      - 'main.tex'
 
   workflow_dispatch:
 
