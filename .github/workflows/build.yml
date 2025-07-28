@@ -47,8 +47,25 @@ jobs:
             git push
           fi
 
+      - name: Cache LaTeX packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            /usr/share/texlive
+            /usr/share/texmf
+            /var/lib/texmf
+            /etc/texmf
+          key: latex-${{ runner.os }}-${{ hashFiles('main.tex', 'sections/*.tex') }}
+          restore-keys: |
+            latex-${{ runner.os }}-
+
       - name: Install LaTeX
-        run: sudo apt-get update && sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended
+        run: |
+          if [ ! -d "/usr/share/texlive" ]; then
+            sudo apt-get update && sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended
+          else
+            echo "LaTeX already cached and available"
+          fi
 
       - name: Build PDF
         run: latexmk -pdf main.tex
