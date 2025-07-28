@@ -18,11 +18,7 @@ jobs:
           fetch-depth: 0
       - uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          packages: |
-            texlive-latex-extra
-            texlive-fonts-recommended
-            texlive-fonts-extra
-            latexmk
+          packages: texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra latexmk
           version: 1.0.0
 
       - name: Add contributor (if from merged PR)
