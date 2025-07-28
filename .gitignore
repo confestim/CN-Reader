@@ -1,0 +1,59 @@
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.nav
+*.snm
+*.vrb
+
+# LaTeX output files
+*.pdf
+*.dvi
+*.ps
+
+# LaTeX temporary files
+*.auxlock
+*.figlist
+*.makefile
+*.fls_latexmk
+
+# BibTeX files
+*.bib.bak
+*.bib.sav
+
+# LaTeX class and style files (uncomment if you want to ignore)
+# *.cls
+# *.sty
+
+# Glossaries
+*.acn
+*.acr
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.lzo
+*.lzs
+
+# Hyperref
+*.xdv
+
+# Beamer specific
+*.nav
+*.pre
+*.snm
+*.vrb

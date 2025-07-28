@@ -1,0 +1,64 @@
+name: Build and Release
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add contributor (if from merged PR)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          # Get the merge commit message to extract PR info
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          
+          # Check if this is a merge commit from a PR
+          if echo "$COMMIT_MSG" | grep -q "Merge pull request"; then
+            # Extract basic info from commit message
+            USER=$(echo "$COMMIT_MSG" | grep -o "from [^/]*/[^/]*" | head -1 | cut -d'/' -f1 | sed 's/from //')
+            TITLE=$(git log -1 --pretty=%s)
+            DATE=$(date +"%d/%m/%y")
+            
+            # Use repository URL to construct PR link (approximate)
+            REPO_URL="https://github.com/${{ github.repository }}"
+            
+            # Add contributor to tex file
+            echo "" >> contributors.tex
+            echo "\\subsection*{@$USER - $DATE}" >> contributors.tex
+            echo "$TITLE" >> contributors.tex
+            echo "\\url{$REPO_URL}" >> contributors.tex
+            
+            # Commit the changes
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add contributors.tex
+            git commit -m "Add contributor: @$USER" || echo "No changes to commit"
+            git push
+          fi
+
+      - name: Install LaTeX
+        run: sudo apt-get update && sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended
+
+      - name: Build PDF
+        run: latexmk -pdf main.tex
+
+      - name: Create Release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ github.run_number }}
+          name: Release v${{ github.run_number }}
+          files: main.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
