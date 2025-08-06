@@ -1,0 +1,35 @@
+@startuml
+
+' Define colors inline
+!define DARKBLUE #003366
+!define LIGHTGRAY #F8F9FA
+!define BORDERCOLOR #CCCCCC
+!define TEXTGRAY #6C757D
+
+' Styling
+skinparam backgroundColor white
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam roundCorner 8
+skinparam shadowing false
+skinparam ArrowColor DARKBLUE
+skinparam ArrowThickness 2
+
+' Modern rectangle styling
+skinparam rectangleBackgroundColor LIGHTGRAY
+skinparam rectangleBorderColor BORDERCOLOR
+skinparam rectangleBorderThickness 1
+skinparam rectangleFontColor DARKBLUE
+skinparam rectangleFontStyle bold
+
+skinparam noteShadowing false
+
+
+rectangle "Start Bit\n//Logic 0//" as start #FFE6E6
+rectangle "Data Bits\n//7-8 bits//" as data #E6F3FF  
+rectangle "Stop Bit\n//Logic 1//" as stop #E6FFE6
+
+start -> data : ""
+data -> stop : ""
+
+@enduml

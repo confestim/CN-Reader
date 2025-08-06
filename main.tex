@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper,twoside]{book}
+\documentclass[12pt,a4paper,openany]{book}
 
 % ===== PACKAGES =====
 \usepackage[utf8]{inputenc}
@@ -19,16 +19,17 @@
 \usepackage{mdframed}
 \usepackage{subcaption}
 \usepackage{wrapfig}
+\usepackage{gensymb}
 
 % ===== GEOMETRY - SMALLER MARGINS =====
 \usepackage[
-    top=2cm,
-    bottom=2cm,
-    left=2.5cm,
-    right=2cm,
+    top=3cm,
+    bottom=3cm,
+    left=3cm,
+    right=3cm,
     marginparwidth=1.8cm,
     marginparsep=0.3cm,
-    headheight=14pt,
+    headheight=15pt,
     headsep=1cm,
     footskip=1cm
 ]{geometry}
@@ -158,11 +159,19 @@
 % ===== HEADER AND FOOTER =====
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[LE]{\nouppercase{\leftmark}}
-\fancyhead[RO]{\nouppercase{\rightmark}}
-\fancyfoot[LE,RO]{\thepage}
-\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[LE]{\small\sffamily\color{darkblue}\nouppercase{\leftmark}}
+\fancyhead[RO]{\small\sffamily\color{darkblue}\nouppercase{\rightmark}}
+\fancyfoot[C]{\small\sffamily\color{darkblue}\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{darkblue!30}\leaders\hrule height \headrulewidth\hfill}}
 \renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\small\sffamily\color{darkblue}\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
 
 % ===== THEOREM ENVIRONMENTS =====
 \theoremstyle{definition}
@@ -247,17 +256,25 @@
 \end{titlepage}
 
 \newpage
+\thispagestyle{empty}
+\mbox{}
 % ===== TABLE OF CONTENTS =====
 \tableofcontents
 
+% Clear headers for preface
+\markboth{}{}
 \input{sections/0_preface}
 
 % ===== MAIN CONTENT =====
 \mainmatter
+% ---- Setup and Introduction ----
 \input{sections/1_setup.tex}
 \input{sections/osi/1_intro.tex}
-\input{sections/network/2_physical.tex}
-\input{sections/network/2.5_modulation.tex}
+
+% Physical Layer
+\input{sections/network/1_mediums.tex}
+\input{sections/network/2_modulation.tex}
+\input{sections/network/3_multiplexing.tex}
 % ===== APPENDICES =====
 \appendix
 

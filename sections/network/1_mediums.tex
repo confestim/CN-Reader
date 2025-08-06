@@ -1,79 +1,27 @@
 \chapter{Physical Layer}\label{sec:osi_physical}
 \section{tl;dr}
-The first layer of the OSI model is responsible for the physical transmission of data over a medium. It defines the hardware elements involved in the communication process, such as cables, switches, and network interface cards (NICs). The physical layer ensures that data is transmitted as raw bits over a physical medium, without any concern for the content or meaning of those bits.
+The first layer of the OSI model is responsible for the physical transmission of data over a medium, with little to no concern for the content involved. It defines the hardware elements used in the communication process, such as cables, switches, and network interface cards (NICs).
+
+\begin{noteblock}
+    It might come across as a surprise, but routers are \textbf{not} part of the Physical Layer. The intuition as to why that is is that routers \textit{route}, hence they need to understand the content of the packets they are forwarding. This is a function of the Network Layer (Layer 3) in the OSI model.
+\end{noteblock}
 
 The Physical Layer is responsible for:
 \begin{itemize}
     \item Converting bits to electrical, optical, or radio signals
     \item Defining voltage levels, timing, and physical data rates
     \item Specifying physical connectors and cable types
-    \item Managing the physical topology of the network
+    \item Managing the physical topology of the network (which we'll be using Cisco Packet Tracer to visualize)
     \item Synchronizing transmission between devices
 \end{itemize}
 
-
-\subsection*{How does data exchange work? $\star$}
-On a physics level, data exchange is about sending and receiving bits over some medium. 
-
-This is done by converting the bits into electrical, optical, or radio signals. Electricity flows through wires, light pulses travel through fiber optics, and radio waves propagate through the air.
-
-
-In essence, all of them boil down to a similar process: a change in some physical property (voltage, light intensity, or electromagnetic field) that can be detected by the receiving device, such that it can decode the signal back into bits. The process of converting bits into signals is called \textbf{modulation}, and the reverse process is called \textbf{demodulation}, while the process of converting bits into a specific format for transmission is called \textbf{encoding}.
-
 \newpage
-Let's look at a simple example of a 1-bit ADC (Analog to Digital Converter) that converts a voltage level into a bit value:
 
-% assets/osi/physical/adc_plot.png
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=.5\textwidth]{assets/osi/physical/adc_plot.png}
-    \caption{Example of a 1-bit ADC converting voltage levels to bits}\label{fig:adc_plot}
-\end{figure}
-
-However, as you can probably guess, there are infinite ways for us to interpret this graph. It could correspond to \texttt{1010} or \texttt{1111000011110000} and so on. 
-This is where clock signals come into play, which help us determine when to sample the signal and how to interpret it.
-
-\vfill
-\subsection*{Let's talk timing $\star$}
-Clocks or timing signals are present in all hardware communication. 
-
-The idea is to ensure that both sender and receiver are synchronized in their understanding of when bits are being sent and received. 
-
-As an analogy, think of a dance where both partners need to be in sync to perform the moves correctly. If one partner is out of sync, the dance will look awkward and may not work at all.
-
-\begin{figure}[h]
-    \centering
-    \begin{tikzpicture}
-        % Clock signal
-        \draw[thick] (0,2) -- (0.5,2) -- (0.5,3) -- (1,3) -- (1,2) -- (1.5,2) -- (1.5,3) -- (2,3) -- (2,2) -- (2.5,2) -- (2.5,3) -- (3,3) -- (3,2) -- (3.5,2) -- (3.5,3) -- (4,3) -- (4,2) -- (4.5,2);
-        \node at (-0.5,2.5) {Clock};
-        
-        % Data signal
-        \draw[thick] (0,0.5) -- (1,0.5) -- (1,1.5) -- (2,1.5) -- (2,0.5) -- (3.5,0.5) -- (3.5,1.5) -- (4.5,1.5);
-        \node at (-0.5,1) {Data};
-        
-        % Sampling points
-        \foreach \x in {0.5,1.5,2.5,3.5}
-            \draw[red,thick] (\x,0.2) -- (\x,1.8);
-        
-        % Bit values
-        \node at (0.5,0) {0};
-        \node at (1.5,0) {1};
-        \node at (2.5,0) {0};
-        \node at (3.5,0) {1};
-        
-        % Labels
-        \node at (2.25,-0.5) {Bit sampling occurs on clock transitions};
-    \end{tikzpicture}
-    \caption{Example rising edge clock synchronization}\label{fig:clock_sync}
-\end{figure}
-\vfill
-\newpage
 \section{Transmission Media}
 Different physical media carry the signals that transport our data across networks:
 
 \subsection*{Guided Media}
-Guided media confines signals to a specific path (literally "guided" along a cable or fiber). This includes:
+Guided media confines signals to a specific path (literally "guided" along a cable or fiber). 
 
 \subsubsection*{Twisted Pair Cable}
 You probably know this one well, as you find it in most local area networks (LANs) and telephone systems. It consists of pairs of insulated copper wires twisted together to reduce electromagnetic interference.
@@ -172,3 +120,44 @@ Contrary to popular belief, microwaves are not just for cooking food. They are a
     \item 802.11ac: 5 GHz, up to 6.9 Gbps
     \item 802.11ax (WiFi 6): 2.4/5 GHz, up to 9.6 Gbps
 \end{itemize}
+
+\section{Signal Degradation}
+Oh how we wish that signals could travel forever without losing strength! Unfortunately, they don't. As signals travel through a medium, they can degrade due to various factors like noise, interference, and attenuation.
+
+This degradation can lead to errors in data transmission, which is why we need error detection and correction mechanisms in higher layers of the OSI model.
+
+\subsection*{Shannon's Theorem and Channel Capacity}
+Claude Shannon's groundbreaking work established the theoretical limits of data transmission over noisy channels. Shannon's theorem states that the maximum data rate (channel capacity) C of a noisy channel is given by:
+
+\begin{equation}
+C = B \log_2(1 + SNR)
+\end{equation}
+
+Where:
+\begin{itemize}
+    \item C = Channel capacity in bits per second (bps)
+    \item B = Bandwidth in Hz
+    \item SNR = Signal-to-Noise Ratio (linear, not in dB)
+\end{itemize}
+
+This formula tells us that even in the presence of noise, we can achieve error-free communication as long as our data rate doesn't exceed the channel capacity.
+
+\subsection*{Nyquist's Theorem}
+For noiseless channels, Harry Nyquist determined the maximum signaling rate. Nyquist's theorem states that the maximum data rate over a noiseless channel is:
+
+\begin{equation}
+C = 2B \log_2(V)
+\end{equation}
+
+Where:
+\begin{itemize}
+    \item C = Maximum data rate in bps
+    \item B = Bandwidth in Hz
+    \item V = Number of discrete signal levels
+\end{itemize}
+
+\begin{importantblock}
+    Shannon's theorem considers noise and gives us the theoretical maximum for any channel, while Nyquist's theorem applies only to ideal, noiseless channels. In practice, Shannon's limit is more realistic since all real-world channels have noise.
+\end{importantblock}
+
+These theorems show us why we can't simply increase data rates indefinitely (which is something we really like doing when tackling complex problems) - physics imposes hard limits on information transmission!

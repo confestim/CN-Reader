@@ -1,0 +1,14 @@
+!define DARKBLUE #003366
+!define LIGHTGRAY #F8F9FA
+!define BORDERCOLOR #CCCCCC
+
+skinparam backgroundColor white
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam roundCorner 5
+skinparam shadowing false
+skinparam ArrowColor DARKBLUE
+skinparam ArrowThickness 2
+skinparam BoxBackgroundColor LIGHTGRAY
+skinparam BoxBorderColor BORDERCOLOR
+skinparam BoxBorderThickness 1

@@ -1,0 +1,17 @@
+    @startuml
+    !theme plain
+
+    left to right direction
+
+    rectangle "Start Bit" as start \#lightcoral
+    rectangle "Data Bits" as data \#lightblue
+    rectangle "Stop Bit" as stop \#lightgreen
+
+    start -right-> data
+    data -right-> stop
+
+    note bottom of start : Logic 0
+    note bottom of data : 7-8 bits
+    note bottom of stop : Logic 1
+
+    @enduml
