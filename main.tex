@@ -196,22 +196,54 @@
 
 % ===== TITLE PAGE =====
 \frontmatter
-\maketitle
+\begin{titlepage}
+    \vspace*{\fill}
+    \centering
+    {\Huge\bfseries\sffamily Computer Networks}\\[0.5cm]
+    {\LARGE\sffamily Course Reader}
 
+    \vspace{1.5cm}
+
+    \begin{tikzpicture}
+        \draw[thick, noteblue] (0,0) -- (8,0);
+        \fill[noteblue] (4,0) circle (3pt);
+    \end{tikzpicture}
+
+    \vspace{2cm}
+
+    {\Large\sffamily Computer Networks TAs et al.}
+
+    \vspace*{\fill}
+
+    % Bottom section with date and version
+    \centering
+
+    {\sffamily\textbf{Latest Revision:} \today}\\[0.3cm]
+    \vspace{0.5cm}
+    \includegraphics[width=0.4\textwidth]{assets/rug.png}
+
+    \vspace{1cm}
+    
+\end{titlepage}
+\newpage
 % ===== TABLE OF CONTENTS =====
 \tableofcontents
-% \listoffigures
-% \listoftables
+
+\input{sections/0_preface}
 
 % ===== MAIN CONTENT =====
-\mainmatter\input{sections/0_preface}
-\input{sections/1_networking}
-\input{sections/2_osi}
+\mainmatter
+\input{sections/osi/1_intro}
+\input{sections/network/2_physical.tex}
+\input{sections/network/2.5_modulation.tex}
 % ===== APPENDICES =====
 \appendix
 
 
 % ===== BACK MATTER =====
-\backmatter\section*{Contributions}\label{sec:contributions}
+\backmatter
+\listoffigures
+\listoftables
+\chapter*{Contributions}\label{sec:contributions}
 \input{contributors.tex}
 \end{document}
