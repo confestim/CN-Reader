@@ -85,3 +85,11 @@ jobs:
           files: main.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update version.tex
+        run: |
+          echo "\\newcommand{\\version}{v${{ github.run_number }}}" > version.tex
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add version.tex
+          git commit -m "Update version to v${{ github.run_number }}"
+          git push

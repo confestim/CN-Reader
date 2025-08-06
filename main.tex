@@ -180,16 +180,36 @@
 \date{Latest revision: \today}
 
 
+% ===== FONT SETUP =====
+\usepackage{charter} % Charter for main text
+\usepackage[expert]{mathdesign} % Matching math fonts for Charter
+\usepackage[scaled=0.9]{helvet} % Helvetica for sans-serif
+\usepackage[scaled=0.85]{FiraMono} % Fira Code for monospace
+\renewcommand{\sfdefault}{phv} % Ensure Helvetica is used for sans-serif
+
+
 % ===== OTHER =====
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.5\baselineskip}
 \setcounter{tocdepth}{1}
 % link color dark blue
+\definecolor{darkblue}{RGB}{0, 51, 102}
 \hypersetup{
-    linkcolor=blue,
-    citecolor=blue,
-    urlcolor=blue
+    linkcolor=darkblue,
+    citecolor=darkblue,
+    urlcolor=darkblue
 }
+
+\input{version.tex} % Include version command
+% Version stamp using draftwatermark
+\usepackage[firstpageonly=true]{draftwatermark}
+\SetWatermarkText{\sffamily\bfseries\version!}
+\SetWatermarkScale{0.5}
+\SetWatermarkAngle{-30}
+\SetWatermarkHorCenter{0.8\paperwidth}
+\SetWatermarkVerCenter{0.11\paperheight}
+\SetWatermarkLightness{0.85}
+\SetWatermarkColor{darkblue!10!white}
 
 
 \begin{document}
@@ -199,32 +219,33 @@
 \begin{titlepage}
     \vspace*{\fill}
     \centering
-    {\Huge\bfseries\sffamily Computer Networks}\\[0.5cm]
-    {\LARGE\sffamily Course Reader}
+    {\fontsize{40}{48}\selectfont\bfseries\sffamily Computer Networks}\\[0.5cm]
+    {\fontsize{30}{36}\selectfont\sffamily Course Reader}
 
     \vspace{1.5cm}
 
     \begin{tikzpicture}
-        \draw[thick, noteblue] (0,0) -- (8,0);
-        \fill[noteblue] (4,0) circle (3pt);
+        \draw[thick, darkblue] (0,0) -- (14,0);
+        \fill[darkblue] (7,0) circle (3pt);
     \end{tikzpicture}
 
     \vspace{2cm}
 
-    {\Large\sffamily Computer Networks TAs et al.}
+    {\fontsize{20}{24}\selectfont\sffamily Computer Networks TAs et al.}
 
     \vspace*{\fill}
 
     % Bottom section with date and version
     \centering
 
-    {\sffamily\textbf{Latest Revision:} \today}\\[0.3cm]
+    {\fontsize{16}{19}\selectfont\sffamily\textbf{Latest Revision:} \today}\\[0.3cm]
     \vspace{0.5cm}
-    \includegraphics[width=0.4\textwidth]{assets/rug.png}
+    \includegraphics[width=0.5\textwidth]{assets/rug.png}
 
     \vspace{1cm}
     
 \end{titlepage}
+
 \newpage
 % ===== TABLE OF CONTENTS =====
 \tableofcontents
@@ -233,7 +254,8 @@
 
 % ===== MAIN CONTENT =====
 \mainmatter
-\input{sections/osi/1_intro}
+\input{sections/1_setup.tex}
+\input{sections/osi/1_intro.tex}
 \input{sections/network/2_physical.tex}
 \input{sections/network/2.5_modulation.tex}
 % ===== APPENDICES =====
