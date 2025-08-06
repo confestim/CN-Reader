@@ -63,6 +63,14 @@ jobs:
               git push
             fi
           fi
+      - name: Update version.tex
+        run: |
+          echo "\\newcommand{\\version}{v0.1.${{ github.run_number }}}" > version.tex
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add version.tex
+          git commit -m "Update version to v${{ github.run_number }}"
+          git push
 
       - name: Download pre-built PDF
         uses: actions/download-artifact@v4
@@ -85,11 +93,3 @@ jobs:
           files: main.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Update version.tex
-        run: |
-          echo "\\newcommand{\\version}{v${{ github.run_number }}}" > version.tex
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add version.tex
-          git commit -m "Update version to v${{ github.run_number }}"
-          git push
