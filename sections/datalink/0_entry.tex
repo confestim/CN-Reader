@@ -1,0 +1,38 @@
+\chapter{Data Link Layer}\label{sec:datalink_intro}
+Well! We've finally made it past the Physical Layer, which is a good thing, because it can be pretty boring. The Data Link Layer is where things start to get interesting, as it is the first layer that deals with actual data packets and their transmission over a physical medium.
+
+
+\section{What is the Data Link Layer?}
+The Data Link Layer is the second layer of the OSI model, sitting above the Physical Layer and below the Network Layer. It provides node-to-node\footnote{
+    directly connected devices, \textbf{not} end-to-end communication!!!
+} data transfer and handles error correction from the Physical Layer. The Data Link Layer is responsible for framing, addressing, and error detection and correction.
+
+It's further divided into two sublayers - the Logical Link Control (LLC) and the Media Access Control (MAC). The LLC sublayer is responsible for managing communication between devices, while the MAC sublayer handles access to the physical medium. 
+
+If you were to run \texttt{ifconfig} on a Linux machine, you would see the MAC address of your network interface card (NIC) listed under each interface\footnote{
+    Interfaces are the logical representations of your network connections, such as Ethernet or Wi-Fi. It is not tied to hardware, but rather to the software that manages the hardware. There exist virtual interfaces as well, which are used for things like VPNs and Docker containers.
+}'s \texttt{ether} field.
+
+\begin{verbatim}
+$ ifconfig
+wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+    inet 10.0.0.100  netmask 255.255.255.0  broadcast 10.0.0.255
+    inet6 fe80::f00d:dead:1337:d00d  prefixlen 64  scopeid 0x20<link>
+    ether f0:0d:de:ad:13:37  txqueuelen 1000  (Ethernet) <---- MAC address
+    RX packets 80085  bytes 5551234 (5.5 MB)
+    TX packets 31415  bytes 2718281 (2.7 MB)
+\end{verbatim}
+
+
+% collisions
+\input{sections/datalink/1_collisions.tex}
+% framing
+\input{sections/datalink/2_framing.tex}
+% error detection and correction
+\input{sections/datalink/3_error_detection.tex}
+% flow control
+\input{sections/datalink/4_flow_control.tex}
+% link management
+\input{sections/datalink/5_link_management.tex}
+% protocols
+\input{sections/datalink/6_protocols.tex}

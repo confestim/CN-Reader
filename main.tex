@@ -20,6 +20,24 @@
 \usepackage{subcaption}
 \usepackage{wrapfig}
 \usepackage{gensymb}
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,compat=1.9}
+\usepackage{amsmath}
+\usetikzlibrary{shapes.geometric, arrows}
+
+
+% speech bubbles - will become useful for protocols with 2 participants
+\newcommand{\speechleft}[2]{%
+    \begin{tcolorbox}[colback=blue!10, colframe=blue!50, arc=3mm, left=2mm, right=2mm, boxrule=1pt, before skip=5mm, after skip=5mm]
+        \textbf{#1:} #2
+    \end{tcolorbox}
+}
+
+\newcommand{\speechright}[2]{%
+    \begin{tcolorbox}[colback=green!10, colframe=green!50, arc=3mm, left=2mm, right=2mm, boxrule=1pt, before skip=5mm, after skip=5mm, halign=right]
+        \textbf{#1:} #2
+    \end{tcolorbox}
+}
 
 % ===== GEOMETRY - SMALLER MARGINS =====
 \usepackage[
@@ -269,12 +287,13 @@
 \mainmatter
 % ---- Setup and Introduction ----
 \input{sections/1_setup.tex}
-\input{sections/osi/1_intro.tex}
+\input{sections/2_intro.tex}
 
 % Physical Layer
-\input{sections/network/1_mediums.tex}
-\input{sections/network/2_modulation.tex}
-\input{sections/network/3_multiplexing.tex}
+\input{sections/physical/0_entry.tex}
+
+% Datalink Layer
+\input{sections/datalink/0_entry.tex}
 % ===== APPENDICES =====
 \appendix
 

@@ -1,0 +1,53 @@
+@startuml
+
+' Define colors inline
+!define DARKBLUE #003366
+!define LIGHTGRAY #F8F9FA
+!define BORDERCOLOR #CCCCCC
+!define TEXTGRAY #6C757D
+
+' General diagram styling
+skinparam backgroundColor white
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam ArrowColor DARKBLUE
+skinparam ArrowThickness 2
+
+' Flowchart specific styling
+skinparam activity {
+    BackgroundColor LIGHTGRAY
+    BorderColor BORDERCOLOR
+    BorderThickness 1
+    FontColor DARKBLUE
+    FontStyle bold
+    RoundCorner 8
+}
+
+skinparam activityDiamond {
+    BackgroundColor LIGHTGRAY
+    BorderColor BORDERCOLOR
+    BorderThickness 1
+    FontColor DARKBLUE
+}
+
+skinparam start {
+    Color DARKBLUE
+}
+
+skinparam end {
+    Color DARKBLUE
+}
+
+' csma flowchart
+start
+:Station has data to send;
+repeat
+    :Listen to channel;
+    if (Channel idle?) then (yes)
+        :Transmit data;
+        stop
+    else (no)
+        :Wait random time;
+endif
+@enduml

@@ -1,0 +1,62 @@
+\section{Framing}\label{sec:framing}
+When you need to send data over a network, you can't just throw it out there and hope for the best (unless you're UDP, which does exactly that). You need to package it up in a way that makes sense to the receiving device. This is where framing comes into play.
+
+Framing is the process of encapsulating data into discrete units called frames. Each frame contains not only the actual data being sent but also additional information that helps the receiving device understand how to process it. This includes things like source and destination addresses, error-checking information, and control information. We'll go through some frame structure diagrams \textit{a lot} in this reader, so get used to it!
+
+\section{Ethernet}
+\label{sec:ethernet}
+Ethernet is the most widely used local area network (LAN) technology today. It defines both the physical layer specifications (cables, connectors) and the data link layer framing protocol.
+
+\subsection{Ethernet Frame Structure}
+Remember when I said you should get used to frame structure diagrams? Well, here's one for Ethernet:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{assets/osi/datalink/protocols/ethernet.png}
+    \caption{Ethernet Frame Structure}
+    \label{fig:ethernet_frame_structure}
+\end{figure}
+
+\begin{itemize}
+\item \textbf{Preamble (7 bytes):} A sequence of alternating 1s and 0s used for synchronization
+\item \textbf{Start Frame Delimiter (1 byte):} Marks the beginning of the frame with pattern 10101011
+\item \textbf{Destination Address (6 bytes):} MAC address of the receiving device
+\item \textbf{Source Address (6 bytes):} MAC address of the sending device
+\item \textbf{Type/Length (2 bytes):} Indicates either the protocol type or frame length
+\item \textbf{Data (46-1500 bytes):} The actual payload being transmitted
+\item \textbf{Frame Check Sequence (4 bytes):} CRC-32 checksum for error detection
+\end{itemize}
+
+
+Different Ethernet standards may have variations in frame size and structure, but the basic components remain consistent. The minimum frame size is 64 bytes, and the maximum is 1518 bytes (or 1522 bytes with VLAN tagging).
+
+\newpage
+There are different physical specifications as well, which you will never need in real life, but might come across on the exam. If you need a refresher on the different types of cables, check out Section \ref{sec:transmission_media}.
+
+\begin{table}
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Ethernet Standard} & \textbf{Speed} & \textbf{Cable Type} \\
+        \hline
+        10BASE-T & 10 Mbps & Twisted Pair (Cat 3) \\
+        100BASE-TX & 100 Mbps & Twisted Pair (Cat 5) \\
+        1000BASE-T & 1 Gbps & Twisted Pair (Cat 5e or higher) \\
+        10GBASE-T & 10 Gbps & Twisted Pair (Cat 6a or higher) \\
+        100BASE-FX & 100 Mbps & Fiber Optic \\
+        1000BASE-LX & 1 Gbps & Fiber Optic \\
+        10GBASE-LR & 10 Gbps & Fiber Optic \\
+        \hline
+    \end{tabular}
+    \caption{Common Ethernet Standards}
+    \label{tab:ethernet_standards}
+\end{table}
+
+\begin{tipblock}
+    The naming convention for Ethernet standards follows a pattern: \textbf{Speed + BASE + Medium}. For example, 100BASE-TX means 100 Mbps speed, baseband transmission, and twisted pair cable (T) with specific characteristics (X). The "BASE" indicates baseband\footnote{
+        Baseband - entire medium is used for one signal at a time, as opposed to broadband where multiple signals can coexist. This is why Ethernet is often referred to as baseband transmission.
+    } transmission (as opposed to broadband), and the suffix indicates the medium type: T for twisted pair, F for fiber, L for long-wavelength fiber.
+
+    It's easier to remember if you think of it like this, instead of just memorizing the table.
+\end{tipblock}
+
