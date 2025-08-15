@@ -31,32 +31,5 @@ Remember when I said you should get used to frame structure diagrams? Well, here
 Different Ethernet standards may have variations in frame size and structure, but the basic components remain consistent. The minimum frame size is 64 bytes, and the maximum is 1518 bytes (or 1522 bytes with VLAN tagging).
 
 \newpage
-There are different physical specifications as well, which you will never need in real life, but might come across on the exam. If you need a refresher on the different types of cables, check out Section \ref{sec:transmission_media}.
-
-\begin{table}
-    \centering
-    \begin{tabular}{|c|c|c|}
-        \hline
-        \textbf{Ethernet Standard} & \textbf{Speed} & \textbf{Cable Type} \\
-        \hline
-        10BASE-T & 10 Mbps & Twisted Pair (Cat 3) \\
-        100BASE-TX & 100 Mbps & Twisted Pair (Cat 5) \\
-        1000BASE-T & 1 Gbps & Twisted Pair (Cat 5e or higher) \\
-        10GBASE-T & 10 Gbps & Twisted Pair (Cat 6a or higher) \\
-        100BASE-FX & 100 Mbps & Fiber Optic \\
-        1000BASE-LX & 1 Gbps & Fiber Optic \\
-        10GBASE-LR & 10 Gbps & Fiber Optic \\
-        \hline
-    \end{tabular}
-    \caption{Common Ethernet Standards}
-    \label{tab:ethernet_standards}
-\end{table}
-
-\begin{tipblock}
-    The naming convention for Ethernet standards follows a pattern: \textbf{Speed + BASE + Medium}. For example, 100BASE-TX means 100 Mbps speed, baseband transmission, and twisted pair cable (T) with specific characteristics (X). The "BASE" indicates baseband\footnote{
-        Baseband - entire medium is used for one signal at a time, as opposed to broadband where multiple signals can coexist. This is why Ethernet is often referred to as baseband transmission.
-    } transmission (as opposed to broadband), and the suffix indicates the medium type: T for twisted pair, F for fiber, L for long-wavelength fiber.
-
-    It's easier to remember if you think of it like this, instead of just memorizing the table.
-\end{tipblock}
+There are different physical specifications as well, which you will never need in real life, but might come across on the exam. If you need a refresher on the different types of cables, check out Section \ref{sec:transmission_media} and Table \ref{tab:ethernet_standards} below.
 

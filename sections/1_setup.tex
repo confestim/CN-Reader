@@ -2,26 +2,20 @@
 \section{Overview}
 Computer Networks is a course that covers the fundamental concepts and technologies that enable communication between computers and devices. 
 
-Understanding how data flows through networks, the protocols that govern this communication, and the architecture of network systems is not only essential for understanding modern computing but could also be pretty fun!
+Understanding how data flows through networks, the protocols that govern communication, and the architecture of network systems is essential knowledge for computing \footnote{this statement is sponsored by the University of Groningen ({\tiny not really})} and it's genuinely exciting! There's something very satisfying about playing with hardware and implementing your own protocols.
 
-This course will explore various topics including:
-\begin{itemize}
-    \item The OSI and TCP/IP models
-    \item Network protocols and standards
-    \item IP addressing and subnetting
-    \item Routing and switching
-    \item Wireless networking
-    \item Network security
-\end{itemize}
+In this course, you will be using Wireshark and Cisco Packet Tracer to analyze network traffic and simulate network configurations. We will walk you through the process of setting up your environment, but we won't be doing much simulation in this reader. You can expect the occasional code snippet or diagram every now and then.
 
-For the practical component, we will be using Wireshark and Cisco Packet Tracer to analyze network traffic and simulate network configurations. There will be sections dedicated to guides as to how to set up and use these tools effectively.
-
-Your practical assignments will involve programming in C \textbf{on Linux} to implement network protocols and other miscellaneous tasks.
+At the time of writing, the practical assignments provided by the course are C programs \textbf{on Linux} that implement network protocols and other miscellaneous tasks.
 
 \begin{importantblock}
 Networking is handled differently depending on the operating system and C does not attempt to abstract this away. We implore you to check out why that is in detail, but for the purposes of this reader, this will be the only mention of it. The mandatory \textit{Operating Systems} course will cover some of the differences in more detail.
 
+\vspace{1em}
 From here on out, we will assume you are using Linux or an equivalent Unix-like operating system. If you are using Windows, you will need to familiarize yourself with the \href{https://docs.microsoft.com/en-us/windows/wsl/install}{Windows Subsystem for Linux (WSL)} or use a virtual machine with a Linux distribution installed.
+
+\vspace{1em}
+If you are using macOS, the C networking libraries should work similarly to Linux, though there may be minor differences in some system calls and headers (i.e. your code crashing locally but working on Themis and vice versa).
 \end{importantblock}
 
 \section{Setting Up Your Environment}
@@ -61,19 +55,19 @@ Cisco Packet Tracer can be installed from the AUR\@:
 yay -S packettracer
 \end{verbatim}
 
-\subsection{macOS}
+\subsection{macOS}While macOS is Unix-like, the C networking libraries should work \textbf{similarly to Linux}, though there may be minor differences in some system calls and headers.
 For macOS, you can install Wireshark using Homebrew:
 \begin{verbatim}
 brew install --cask wireshark
 \end{verbatim}
 
-Cisco Packet Tracer can be downloaded from the \href{https://www.netacad.com/courses/packet-tracer}{Cisco Networking Academy} website. While macOS is Unix-like, the C networking libraries should work \textbf{similarly to Linux}, though there may be minor differences in some system calls and headers.
+Cisco Packet Tracer can be downloaded from the \href{https://www.netacad.com/courses/packet-tracer}{Cisco Networking Academy} website. 
 
 \section{C Development Environment}
 
 In addition to the networking tools above, you'll need a proper C development environment for the programming assignments.
 
-\subsection{Essential Development Tools}
+\subsection{Development Tools}
 
 All systems will need:
 \begin{itemize}
@@ -100,17 +94,3 @@ Install Xcode Command Line Tools:
 \begin{verbatim}
 xcode-select --install
 \end{verbatim}
-
-\subsection{Networking Libraries}
-
-The assignments will use standard POSIX networking libraries that are included with your system:
-\begin{itemize}
-    \item \texttt{sys/socket.h} - Socket programming interface
-    \item \texttt{netinet/in.h} - Internet address family
-    \item \texttt{arpa/inet.h} - Internet operations
-    \item \texttt{unistd.h} - POSIX operating system API
-\end{itemize}
-
-\begin{noteblock}
-These are part of the standard C library on Unix-like systems.
-\end{noteblock}

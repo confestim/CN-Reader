@@ -6,7 +6,7 @@ Think of it like this: you want to send a message to your friend across the room
     \item Speak out loud (sound waves)
 \end{itemize}
 
-In networks, we do something similar but with electricity, light, or radio waves. The key insight is that we're just changing something physical that the receiver can detect - like voltage going up and down, light getting brighter and dimmer, or radio waves shifting frequency.
+In networks, we do something similar but with electricity, light, or radio waves. We're just changing something physical that the receiver can detect - like voltage going up and down, light getting brighter and dimmer, or radio waves shifting frequency.
 
 \begin{importantblock}
     The process of converting bits into signals is called \textbf{modulation}, and the reverse process is called \textbf{demodulation}.
@@ -24,7 +24,7 @@ Here's where it gets interesting. In an electrical engineer's ideal world, digit
     \caption{Theoretical waves}\label{fig:theoretical_waves}
 \end{figure}
 
-In practice, we use analog signals to transmit digital information. These analog signals are continuous and can take any value within a range. At the receiver, we need to convert these analog signals back to discrete digital values (\texttt{1} or \texttt{0}) through a process called \textbf{sampling and quantization}. The receiver samples the analog signal at specific time intervals and uses threshold levels to determine whether each sample represents a \texttt{1} or \texttt{0}.
+In practice, we use analog signals to transmit digital information. They are continuous and can take any value within a range. At the receiver, we need to convert them back to discrete digital values (\texttt{1} or \texttt{0}) through a process called \textbf{sampling and quantization}. The receiver samples the analog signal at specific time intervals and uses threshold levels to determine whether each sample represents a \texttt{1} or \texttt{0}.
 
 Let's look at a simple example of a 1-bit ADC (Analog to Digital Converter) that converts a voltage level into a bit value:
 
@@ -42,8 +42,6 @@ This is where clock signals come into play, which help us determine when to samp
 Clocks or timing signals are present in all hardware communication. 
 
 The idea is to ensure that both sender and receiver are synchronized in their understanding of when bits are being sent and received. 
-
-As an analogy, think of a dance where both partners need to be in sync to perform the moves correctly. If one partner is out of sync, the dance will look awkward and may not work at all.
 
 
 There are two main types of synchronization:

@@ -1,6 +1,6 @@
 \chapter{Physical Layer}\label{sec:osi_physical}
 \section{tl;dr}
-The first layer of the OSI model is responsible for the physical transmission of data over a medium, with little to no concern for the content involved. It defines the hardware elements used in the communication process, such as cables, switches, and network interface cards (NICs).
+The first layer of the OSI model is responsible for the physical transmission of data over a medium, with little to no concern for the content involved. It defines the hardware elements used in the communication process, such as cables, connectors, and signaling methods. 
 
 \begin{noteblock}
     It might come across as a surprise, but routers are \textbf{not} part of the Physical Layer. The intuition as to why that is is that routers \textit{route}, hence they need to understand the content of the packets they are forwarding. This is a function of the Network Layer (Layer 3) in the OSI model.
@@ -15,6 +15,7 @@ The Physical Layer is responsible for:
     \item Synchronizing transmission between devices
 \end{itemize}
 
+There are many devices that operate at both the Physical and Data Link layers (hence why the TCP/IP model combines them into one layer), such as network interface cards (NICs) and repeaters. So, if you're ever confused as to which layer a device belongs - it's probably both.
 \newpage
 
 % mediums

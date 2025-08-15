@@ -13,9 +13,7 @@ You probably know this one well, as you find it in most local area networks (LAN
     \caption{F-UTP}\label{fig:twisted_pair}
 \end{figure}
 
-UTP (Unshielded Twisted Pair) is the most common type, but there are also shielded variants like STP (Shielded Twisted Pair) and F/UTP (Foiled Unshielded Twisted Pair).
-
-\vspace{1em}
+UTP (Unshielded Twisted Pair) is the most common type, but there are also shielded variants like STP (Shielded Twisted Pair) and F/UTP (Foiled Unshielded Twisted Pair). There exist categories of TP cables abbreviated as \href{https://en.wikipedia.org/wiki/Category:Ethernet_cables}{Cat}, which you don't need to memorize, but should be aware of. 
 
 \subsubsection*{Coaxial Cable}
 Usually used in cable television and broadband\footnote{Everything but dial-up.}.
@@ -91,6 +89,15 @@ Contrary to popular belief, microwaves are not just for cooking food. They are a
     \end{tabular}
     \caption{Common Ethernet Physical Layer Standards}\label{tab:ethernet_standards}
 \end{table}
+
+\begin{tipblock}
+    The naming convention for Ethernet standards follows a pattern: \textbf{Speed + BASE + Medium}. For example, 100BASE-TX means 100 Mbps speed, baseband transmission, and twisted pair cable (T) with specific characteristics (X). The "BASE" indicates baseband\footnote{
+        Baseband - entire medium is used for one signal at a time, as opposed to broadband where multiple signals can coexist. This is why Ethernet is often referred to as baseband transmission.
+    } transmission (as opposed to broadband), and the suffix indicates the medium type: T for twisted pair, F for fiber, L for long-wavelength fiber.
+
+    It's easier to remember if you think of it like this, instead of just memorizing the table.
+\end{tipblock}
+
 
 \subsection*{WiFi Standards}
 \begin{itemize}
