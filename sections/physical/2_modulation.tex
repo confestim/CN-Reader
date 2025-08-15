@@ -26,6 +26,7 @@ Here's where it gets interesting. In an electrical engineer's ideal world, digit
 
 In practice, we use analog signals to transmit digital information. They are continuous and can take any value within a range. At the receiver, we need to convert them back to discrete digital values (\texttt{1} or \texttt{0}) through a process called \textbf{sampling and quantization}. The receiver samples the analog signal at specific time intervals and uses threshold levels to determine whether each sample represents a \texttt{1} or \texttt{0}.
 
+\newpage
 Let's look at a simple example of a 1-bit ADC (Analog to Digital Converter) that converts a voltage level into a bit value:
 
 % assets/osi/physical/adc_plot.png
@@ -47,7 +48,7 @@ The idea is to ensure that both sender and receiver are synchronized in their un
 There are two main types of synchronization:
 \begin{itemize}
     \item Both sender and receiver share a common clock signal (Figure~\ref{fig:clock_sync}) - Synchronous 
-    \item Sender and receiver do not share a common clock, but use start and stop bits to indicate the beginning and end of a data frame - Asynchronous
+    \item Sender and receiver do not share a common clock, but use start and stop bits to indicate the beginning and end of a data frame - Asynchronous (Figure~\ref{fig:async_frame})
 \end{itemize}
 
 \begin{figure}[h]
@@ -89,7 +90,7 @@ In asynchronous serial\footnote{
 \end{figure}
 
 This approach, specifically in the form that we refer to in the figure, is \textbf{character-oriented}.
-\vfill
+\newpage
 \section{Modulation and Encoding}\label{sec:modulation}
 As mentioned earlier, modulation is the process of converting digital data into analog signals for transmission over a physical medium.
 
@@ -176,7 +177,9 @@ For example, in WSPR, a \texttt{1} might be represented by a short burst of a sp
 \end{figure}
 
 \newpage
-For digital data, modulation becomes synonymous with \textbf{keying}, where we use changes in the signal to represent bits.
+For digital data, modulation becomes synonymous\footnote{
+    Not literally - modulation is the broader concept of converting information into signals, while keying specifically refers to digital modulation techniques that switch between discrete states to represent bits.
+    } with \textbf{keying}, where we use changes in the signal to represent bits.
 
 \begin{itemize}
     \item Amplitude Shift Keying (ASK) -  A higher amplitude might represent a \texttt{1}, while a lower amplitude represents a \texttt{0}.
@@ -325,17 +328,9 @@ where $f_c$ is the carrier frequency. For our 4-QAM example with bit string \tex
         \draw[domain=9:12,samples=150,thick,orange] plot (\x,{0.8*cos(8*\x r + 270)});
         
         % Amplitude level indicators
-        \draw[dotted, gray] (0,1.5) -- (12.5,1.5) node[right] {\small High};
-        \draw[dotted, gray] (0,0.8) -- (12.5,0.8) node[right] {\small Low};
         \draw[dotted, gray] (0,-0.8) -- (12.5,-0.8);
         \draw[dotted, gray] (0,-1.5) -- (12.5,-1.5);
         
-        % Time axis labels
-        \node[below] at (0,-0.2) {0};
-        \node[below] at (3,-0.2) {$T_s$};
-        \node[below] at (6,-0.2) {$2T_s$};
-        \node[below] at (9,-0.2) {$3T_s$};
-        \node[below] at (12,-0.2) {$4T_s$};
     \end{tikzpicture}
     \caption{Complete time-domain signal for bit string \texttt{00101101} using 4-QAM modulation. Each symbol period $T_s$ contains one constellation point with its specific amplitude and phase.}
     \label{fig:qam_complete_waveform}

@@ -3,7 +3,7 @@ Continuing from the previous section (\ref{subsec:carriers_sensing}), we now tur
 
 A collision happens when two or more devices decide to "speak" (transmit data) at the exact same time over the same communication channel. You can imagine why that's problematic. The most common way of dealing with this is to either detect the collision and retransmit the corrupted data or to avoid the collision altogether.
 
-Collisions come in various forms - partial corruption affects only portions of data, full destruction where entire frames are lost. A particularly interesting case is the hidden terminal problem, where two devices can't detect each other's presence but attempt to communicate with the same destination simultaneously. We'll explore this phenomenon later in the chapter.
+Collisions come in various ca;ibers - partial corruption affects only portions of data, full destruction where entire frames are lost. A particularly interesting case is the hidden terminal problem, where two devices can't detect each other's presence but attempt to communicate with the same destination simultaneously. We'll explore this phenomenon later in the chapter.
 
 Your network interface card (NIC) constantly manages these collision scenarios, implementing detection and recovery mechanisms to maintain reliable communication.
 \vfill
@@ -29,14 +29,15 @@ CSMA works on a simple principle: before transmitting anything, a device listens
 \end{figure}
 
 \subsubsection{+ Collision Detection (CSMA/CD)}
-CSMA/CD takes things a step further by adding real-time collision detection. The only difference from the barebones version is that while transmitting, devices continue listening to the channel. If they detect that their signal has been corrupted by interference (collision), they immediately stop transmitting and implement a "backoff" strategy.
+CSMA/CD introduces real-time collision detection. The only difference from the barebones version is that while transmitting, devices continue listening to the channel. If they detect that their signal has been corrupted by interference (collision), they immediately stop transmitting and implement a "backoff" strategy.
 
-The backoff algorithm uses exponential backoff, meaning that after multiple failed attempts, devices wait progressively longer before retrying. This prevents deadlock situations where devices keep colliding over and over.
-
+The backoff algorithm uses exponential backoff, meaning that after multiple failed attempts, devices wait progressively longer before retrying. This prevents starvation\footnote{
+    Starvation is a scheduling problem where a process is perpetually denied the resources it needs to proceed, often due to other processes monopolizing those resources or the algorithm causeing it to wait indefinitely.
+}.
 \subsubsection{+ Collision Avoidance (CSMA/CA)}
-As the name implies, CSMA/CA tries to avoid colissions entirely..
+As the name implies, CSMA/CA tries to avoid colissions entirely.
 
-The protocol uses a handshake mechanism called RTS/CTS (Request to Send/Clear to Send). Think of it as raising your hand and getting permission before speaking:
+The protocol uses a handshake mechanism called RTS/CTS (Request to Send/Clear to Send).
 
 \speechleft{Device A}{"May I please transmit to Device C?" (RTS)}
 \speechright{Device C}{"Yes, go ahead, I'm ready to listen" (CTS)}

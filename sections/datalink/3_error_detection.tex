@@ -4,8 +4,7 @@ As mentioned in the beginning of this chapter, there are many issues that the ph
 
 There are many different types of errors and approaches to mitigating/correcting them! Too many to cover in this reader, even!
 
-\subsection{Error Handling}
-Most protocols discard the frame when errors are detected. However, some wireless protocols attempt to correct the frame instead of discarding it.
+Most protocols in the data-link layer discard the frame when errors are detected. However, some wireless protocols attempt to correct the frame instead of discarding it.
 
 \subsection{Types of Errors}
 There are three primary types of errors that can occur during data transmission. \textbf{Interference} refers to unpredictable changes that can alter the shape of the signal, often caused by external factors such as electromagnetic noise or physical obstructions. 
@@ -138,8 +137,8 @@ To improve error detection, we can arrange data in a rectangular grid and add pa
 
 Two-dimensional parity can:
 \begin{itemize}
-    \item \textbf{Detect} most patterns of 2-bit and 3-bit errors
-    \item \textbf{Locate and correct} single-bit errors
+    \item Detect most patterns of 2-bit and 3-bit errors
+    \item Locate and even correct single-bit errors
     \item Still fail for certain 4-bit error patterns
 \end{itemize}
 

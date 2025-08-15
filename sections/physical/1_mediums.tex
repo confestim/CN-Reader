@@ -16,7 +16,7 @@ You probably know this one well, as you find it in most local area networks (LAN
 UTP (Unshielded Twisted Pair) is the most common type, but there are also shielded variants like STP (Shielded Twisted Pair) and F/UTP (Foiled Unshielded Twisted Pair). There exist categories of TP cables abbreviated as \href{https://en.wikipedia.org/wiki/Category:Ethernet_cables}{Cat}, which you don't need to memorize, but should be aware of. 
 
 \subsubsection*{Coaxial Cable}
-Usually used in cable television and broadband\footnote{Everything but dial-up.}.
+Usually used in cable television and broadband\footnote{High-speed internet access, typically defined as speeds above 25 Mbps download.}.
 
 \begin{figure}[h]
     \centering
@@ -50,7 +50,7 @@ Uses light to transmit data, making it the fastest and most reliable medium avai
 \vspace{1em}
 
 \subsection*{Wireless Transmission}
-Ever wondered how signals travel through the air? Different types of electromagnetic waves are used for wireless communication, each with its own characteristics.
+Different types of electromagnetic waves are used for wireless communication, each with its own characteristics.
 
 % assets/osi/physical/spectrum.png
 \begin{figure}[h]
@@ -59,21 +59,21 @@ Ever wondered how signals travel through the air? Different types of electromagn
     \caption{Electromagnetic spectrum showing different types of waves}\label{fig:em_spectrum}
 \end{figure}
 
+\begin{importantblock}
+    Electronic communication - whether wireless or wired, relies on electromagnetic phenomena. Even in guided media like copper cables, we're manipulating electromagnetic fields: electrical current is the flow of electrons through a conductor, creating electromagnetic fields that propagate along the wire.
+\end{importantblock} 
+
 \subsubsection*{Radio Waves}
-Radio waves are used for various wireless communication systems, including Wi-Fi, Bluetooth, and cellular networks. They can travel long distances (depending on wavelength) and penetrate through obstacles like walls.
+What we commonly call "radio waves" refers specifically to the lower frequency portion of the spectrum in Figure \ref{fig:em_spectrum}, ranging from about 3 Hz to 300 GHz. These are used for various wireless communication systems, including Wi-Fi, Bluetooth, and cellular networks. They can travel long distances (depending on wavelength) and penetrate through obstacles like walls.
 
 \begin{noteblock}
     Fun fact! A lot of appliances like car remotes, thermostats and RC toys operate on the 433 MHz frequency band, which is a part of the radio spectrum. This is a perfect entry point if you'd like to hack your own devices or learn about radio communication.
 \end{noteblock}
 
-\subsubsection*{Microwaves}
-Contrary to popular belief, microwaves are not just for cooking food. They are also used for point-to-point communication links, satellite communications, and some Wi-Fi networks. Microwaves have shorter wavelengths than radio waves, allowing them to carry more data, but faster attenuation\footnote{
-    Attenuation: Reduction in signal strength as it travels through a medium, which can be caused by absorption, scattering, or reflection. 
-    This is why we need repeaters/amplifiers!
-} over distance.
-
 \section{Standards and Specifications}
 \subsection*{Ethernet Standards}
+Ethernet is both part of the Physical Layer and the Data Link Layer, as it defines both the physical medium (table \ref{tab:ethernet_standards} below) and the framing protocol. Read up more on Ethernet as a protocol in Section \ref{sec:ethernet}.
+
 \begin{table}[h]
     \centering
     \begin{tabular}{|c|c|c|c|}
@@ -100,6 +100,9 @@ Contrary to popular belief, microwaves are not just for cooking food. They are a
 
 
 \subsection*{WiFi Standards}
+Similarly to Ethernet, WiFi standards define both the physical layer (radio frequencies, modulation techniques - section \ref{sec:modulation}) and the data link layer (framing protocols). The IEEE \footnote{
+    Institute of Electrical and Electronics Engineers - another abbreviation you'll encounter frequently. IEEE is another standards organization that also publishes numerous academic journals.
+    } 802.11 family of standards governs wireless LANs.
 \begin{itemize}
     \item 802.11a: 5 GHz, up to 54 Mbps
     \item 802.11b: 2.4 GHz, up to 11 Mbps

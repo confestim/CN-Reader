@@ -6,7 +6,9 @@ Multiplexing is the technique of combining multiple signals into one signal over
 
 \subsection{Time Division Multiplexing (TDM)}
 \label{subsec:tdm}
-Time Division Multiplexing (TDM) shares a single link by slicing time into fixed-length slots. Each source is assigned one slot per frame; sources take turns in a periodic round-robin, so only one transmits at any instant and there is no mutual interference. If a source has nothing to send, its slot may be left idle (synchronous TDM) or reallocated on demand (statistical TDM).
+Time Division Multiplexing (TDM) shares a single link by slicing time into fixed-length slots. Each source is assigned one slot per frame; sources take turns in a periodic round-robin\footnote{
+    Round robin is a scheduling algorithm where each source gets a fixed time slice in a cyclic order. 
+}, so only one transmits at any instant and there is no mutual interference. If a source has nothing to send, its slot may be left idle (synchronous TDM) or reallocated on demand (statistical TDM).
 
 \begin{figure}[h]
     \centering
@@ -15,6 +17,9 @@ Time Division Multiplexing (TDM) shares a single link by slicing time into fixed
     \label{fig:tdm_example}
 \end{figure}
 
+\subsection{Frequency Division Multiplexing (FDM)}
+\label{subsec:fdm}
+Frequency Division Multiplexing (FDM) divides the available bandwidth into non-overlapping frequency bands, each carrying a separate signal. Each source is assigned a unique frequency band, allowing multiple signals to be transmitted simultaneously without interference.
 
 \subsection{Wavelength Division Multiplexing (WDM)}
 \label{subsec:wdm}
@@ -31,7 +36,7 @@ You might come across the term "multiple access" in networking. Especially in th
 
 \subsection{Code Division Multiple Access (CDMA)}
 \label{subsec:cdma}
-Code Division Multiple Access (CDMA) allows multiple signals to share the same frequency band simultaneously. Unlike TDMA or FDMA, CDMA uses unique code sequences called "chip codes" to distinguish between different users' signals.
+Code Division Multiple Access (CDMA) allows multiple signals to share the same frequency band simultaneously. CDMA uses unique code sequences called "chip codes" to distinguish between different users' signals.
 
 \paragraph{How Chip Codes Work}
 
@@ -180,8 +185,6 @@ So we've successfully recovered our original data: $d_1 = [1, 0, 1, 0]$ and $d_2
 Now that we've seen how CDMA works, let's look at two other fundamental multiple access techniques: TDMA and FDMA. These approaches solve the same problem (multiple users sharing a medium) but use completely different strategies.
 
 \subsubsection{TDMA}
-Think of TDMA like a well-organized conversation. Everyone gets to speak, but they take turns - only one person talks at a time, and everyone else listens. When your turn comes, you have the floor completely to yourself.
-
 This approach to resource allocation is called \textbf{round-robin} schedule: users take turns in a fixed order, each occupying one time slot per frame; after the last user, the sequence repeats.
 
 \begin{figure}[h]
@@ -196,7 +199,6 @@ In TDMA:
     \item The entire frequency band is available to each user
     \item Time is divided into fixed slots (called a "frame")
     \item Each user gets one slot per frame
-    \item Users transmit in round-robin fashion
     \item If a user has nothing to send, their slot remains empty
 \end{itemize}
 
@@ -229,6 +231,15 @@ Modern systems often combine these techniques! For example:
 \begin{importantblock}
     Remember: These are all solutions to the same fundamental problem - how do multiple users share a limited communication medium without interfering with each other? The "best" solution depends on your specific requirements for capacity, latency, complexity, and cost.
 \end{importantblock}
+
+\subsection{FDM/FDMA, TDM/TDMA?}
+You might have noticed that we've been using similar terms: FDM vs FDMA and TDM vs TDMA. What's the difference?
+
+\begin{importantblock}
+    \textbf{Multiplexing} refers to combining signals from the same source, while \textbf{Multiple Access} refers to sharing resources among different devices/users.
+\end{importantblock}
+
+In practice, these terms are often used interchangeably, but understanding the conceptual difference helps clarify whether we're talking about one device managing multiple data streams or multiple devices sharing a common medium.
 
 \subsection{Carriers and Sensing}
 \label{subsec:carriers_sensing}
